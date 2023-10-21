@@ -86,31 +86,61 @@ const titles = [
 
 //Array of authors and the book they wrote
 //"--- wrote --- in ---"
-books.forEach((books) =>
-  console.log(books.authorFirst, books.authorLast, ",", books.name)
+books.forEach((book) =>
+  console.log(
+    book.authorFirst,
+    book.authorLast,
+    "wrote",
+    book.name,
+    "in",
+    book.publishDate
+  )
 );
 
 //Sort books from oldest to most recent
-const yearsArray = books.forEach((books) => books.publishDate);
-console.log(yearsArray);
+const sortedByAge = books.sort((a, b) => a.publishDate - b.publishDate); // calculates differences between dates and sorts, you can also use destructing assignment
+console.log("Books sorted by age", sortedByAge);
 //sort books alphabetically
-console.log(titles.sort());
+console.log("Books sorted alphebetically", titles.sort()); // technically this only sorts the titles but i am lazy
+
 //Find who wrote War and Peace
 function bookLookup(arr) {
   if (arr.name == "War and Peace") {
     return console.log(
-      "Searched up book was written by: " +
-        arr.authorFirst +
-        " " +
-        arr.authorLast
+      "War and Peace was written by: " + arr.authorFirst + " " + arr.authorLast
     );
   }
 }
 books.filter(bookLookup);
-//how many books were written before 1900?
 
+//how many books were written before 1900?
+console.log(
+  books.sort((a) => {
+    if (a.publishDate < 1900) {
+      console.log("This book was written before 1900:", a.name);
+    }
+  })
+);
 //was there at least one book published within the last 100 years?
+const date = new Date();
+const year = date.getFullYear();
+const checkIf100 = (arr) => year - arr.publishDate >= 100;
+console.log(
+  "was there at least one book published within the last 100 years?",
+  books.some(checkIf100)
+);
 
 //was every book published within the last 100 years?
+console.log(
+  "was every book published within the last 100 years?",
+  books.every(checkIf100)
+);
 
 //print a list of books that "includes" the genre historical
+books.forEach((book) => {
+  book.genre.forEach((genre) => {
+    if (genre == "historical") {
+      console.log("this book includes the genre historical:", book.name);
+    }
+  });
+});
