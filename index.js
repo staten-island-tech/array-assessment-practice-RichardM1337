@@ -97,30 +97,37 @@ books.forEach((book) =>
   )
 );
 
-//Sort books from oldest to most recent
-const sortedByAge = books.sort((a, b) => a.publishDate - b.publishDate); // calculates differences between dates and sorts, you can also use destructing assignment
-console.log("Books sorted by age", sortedByAge);
+// calculates differences between dates and sorts, you can also use destructing assignment
 //sort books alphabetically
-console.log("Books sorted alphebetically", titles.sort()); // technically this only sorts the titles but i am lazy
+console.log(
+  "books sorted alphebetically",
+  books.sort(function (a, b) {
+    // sort is on a -1<0<1 basis. If the first name is 'greater' than the second, return -1, saying that it needs to be moved under it. apply as needed
+    if (a.name < b.name) {
+      return -1;
+    }
+    if (a.name > b.name) {
+      return 1;
+    }
+    return 0;
+  })
+);
 
 //Find who wrote War and Peace
-function bookLookup(arr) {
+books.filter((arr) => {
   if (arr.name == "War and Peace") {
     return console.log(
       "War and Peace was written by: " + arr.authorFirst + " " + arr.authorLast
     );
   }
-}
-books.filter(bookLookup);
+});
 
 //how many books were written before 1900?
-console.log(
-  books.sort((a) => {
-    if (a.publishDate < 1900) {
-      console.log("This book was written before 1900:", a.name);
-    }
-  })
-);
+books.filter((arr) => {
+  if (arr.publishDate < 1900) {
+    return console.log("these books were written before 1900:", arr.name);
+  }
+});
 //was there at least one book published within the last 100 years?
 const date = new Date();
 const year = date.getFullYear();
@@ -144,3 +151,9 @@ books.forEach((book) => {
     }
   });
 });
+
+//Sort books from oldest to most recent
+console.log(
+  "books sorted by age",
+  books.sort((a, b) => a.publishDate - b.publishDate)
+);
