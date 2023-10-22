@@ -86,6 +86,7 @@ const titles = [
 
 //Array of authors and the book they wrote
 //"--- wrote --- in ---"
+booksAndAuthors = [];
 books.forEach((book) =>
   console.log(
     book.authorFirst,
@@ -112,6 +113,8 @@ console.log(
     return 0;
   })
 );
+// sort just titles alphebetically
+console.log("just titles alphebetically sorted", titles.sort());
 
 //Find who wrote War and Peace
 books.filter((arr) => {
@@ -123,11 +126,13 @@ books.filter((arr) => {
 });
 
 //how many books were written before 1900?
+const array1900 = [];
 books.filter((arr) => {
   if (arr.publishDate < 1900) {
-    return console.log("these books were written before 1900:", arr.name);
+    array1900.push(arr.name);
   }
 });
+console.log(array1900.length, "books were written before 1900");
 //was there at least one book published within the last 100 years?
 const date = new Date();
 const year = date.getFullYear();
@@ -144,13 +149,15 @@ console.log(
 );
 
 //print a list of books that "includes" the genre historical
+const historicalBooks = [];
 books.forEach((book) => {
   book.genre.forEach((genre) => {
     if (genre == "historical") {
-      console.log("this book includes the genre historical:", book.name);
+      historicalBooks.push(book.name);
     }
   });
 });
+console.log("historical books", historicalBooks);
 
 //Sort books from oldest to most recent
 console.log(
