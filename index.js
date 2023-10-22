@@ -117,26 +117,29 @@ console.log(
 console.log("just titles alphebetically sorted", titles.sort());
 
 //Find who wrote War and Peace
-books.filter((arr) => {
-  if (arr.name == "War and Peace") {
+books.filter((book) => {
+  if (book.name == "War and Peace") {
     return console.log(
-      "War and Peace was written by: " + arr.authorFirst + " " + arr.authorLast
+      "War and Peace was written by: " +
+        book.authorFirst +
+        " " +
+        book.authorLast
     );
   }
 });
 
 //how many books were written before 1900?
 const array1900 = [];
-books.filter((arr) => {
-  if (arr.publishDate < 1900) {
-    array1900.push(arr.name);
+books.filter((book) => {
+  if (book.publishDate < 1900) {
+    array1900.push(book.name);
   }
 });
 console.log(array1900.length, "books were written before 1900");
 //was there at least one book published within the last 100 years?
 const date = new Date();
 const year = date.getFullYear();
-const checkIf100 = (arr) => year - arr.publishDate >= 100;
+const checkIf100 = (arr) => year - arr.publishDate >= 100; //arr is used here as an example parameter, not an iterable
 console.log(
   "was there at least one book published within the last 100 years?",
   books.some(checkIf100)
