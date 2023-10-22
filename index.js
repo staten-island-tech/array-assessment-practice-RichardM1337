@@ -100,20 +100,16 @@ books.forEach((book) =>
 
 // calculates differences between dates and sorts, you can also use destructing assignment
 //sort books alphabetically
-console.log(
-  "books sorted alphebetically",
-  books.sort(function (a, b) {
-    // sort is on a -1<0<1 basis. If the first name is 'greater' than the second, return -1, saying that it needs to be moved under it. apply as needed
-    if (a.name < b.name) {
-      return -1;
-    }
-    if (a.name > b.name) {
-      return 1;
-    }
-    return 0;
-  })
-);
-// sort just titles alphebetically
+/* sort is on a -1<0<1 basis. If the first name is 'greater' than the second, return -1, saying that it needs to be moved under it. apply as needed
+  if (a.name < b.name) {
+    return -1;
+  }
+  if (a.name > b.name) {
+    return 1;
+  }
+  return 0;
+});
+*/
 console.log("just titles alphebetically sorted", titles.sort());
 
 //Find who wrote War and Peace
